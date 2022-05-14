@@ -1,0 +1,7 @@
+CREATE USER 'hasan'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hasan2107',
+
+
+'KNEX Command'
+yarn knex migrate:make create_posts_table
+
+//
