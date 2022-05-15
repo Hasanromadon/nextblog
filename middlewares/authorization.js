@@ -1,4 +1,3 @@
-import db from '../../../libs/db';
 import jwt from 'jsonwebtoken';
 
 export default async function authorization(req, res) {

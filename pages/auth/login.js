@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import Cookie from 'js-cookie';
-import cookies from 'next-cookies';
-
+import { unauthPage } from '../../middlewares/authorizationPage';
+import Router from 'next/router';
 export async function getServerSideProps(ctx) {
   // get cookies from server not browser
-  const allCookies = cookies(ctx);
-  if (allCookies.token) {
-    return ctx.res
-      .writeHead(302, {
-        Location: '/posts',
-      })
-      .end();
-  }
+  await unauthPage(ctx);
+
   return {
     props: {},
   };
@@ -40,6 +34,7 @@ export default function Login() {
     setStatus('success');
 
     Cookie.set('token', loginRes.token);
+    Router.push('/posts'); //redirect in browser
   }
 
   function fieldHandler(e) {
